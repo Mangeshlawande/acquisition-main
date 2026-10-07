@@ -10,7 +10,7 @@ import {
   getAllUsers,
   getUserById,
   updateUser,
-} from '#src/services/user.service.js';
+} from '#services/user.service.js';
 
 export const fetchAllUsers = async (req, res, _next) => {
   try {
