@@ -101,4 +101,16 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
+// Central error handler — keeps every failure path from hanging the request
+app.use((err, req, res, _next) => {
+  logger.error(`Unhandled error: ${err.stack || err.message}`);
+  res.status(err.status || 500).json({
+    error: 'Internal server error',
+    message:
+      process.env.NODE_ENV === 'production'
+        ? 'Something went wrong'
+        : err.message,
+  });
+});
+
 export default app;

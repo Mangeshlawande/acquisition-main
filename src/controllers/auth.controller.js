@@ -46,6 +46,7 @@ export const signup = async (req, res, _next) => {
     if (e.message === 'User already exists !!') {
       return res.status(409).json({ error: 'Email already exists' });
     }
+    _next(e);
   }
 };
 
