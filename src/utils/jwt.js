@@ -4,7 +4,9 @@ import logger from '#config/logger.js';
 let JWT_SECRET = process.env.JWT_SECRET;
 if (!JWT_SECRET) {
   if (process.env.NODE_ENV === 'production') {
-    throw new Error('JWT_SECRET environment variable must be set in production');
+    throw new Error(
+      'JWT_SECRET environment variable must be set in production'
+    );
   }
   logger.warn(
     'JWT_SECRET is not set — using an insecure development-only fallback'
