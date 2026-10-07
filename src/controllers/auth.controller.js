@@ -16,10 +16,11 @@ export const signup = async (req, res, _next) => {
       });
     }
 
-    const { name, email, role, password } = validationResult.data;
+    const { name, email, password } = validationResult.data;
 
-    // auth service
-    const user = await createUser({ name, email, password, role });
+    // auth service — role is intentionally not accepted from the client;
+    // every self-registered account is a regular 'user'
+    const user = await createUser({ name, email, password, role: 'user' });
 
     const token = jwttoken.sign({
       id: user.id,
