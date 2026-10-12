@@ -1,5 +1,6 @@
 import logger from '#config/logger.js';
 import { createUser, authenticateUser } from '#services/auth.service.js';
+import { getUserById } from '#services/user.service.js';
 import { cookies } from '#utils/cookies.js';
 import { formatValidationError } from '#utils/format.js';
 import { jwttoken } from '#utils/jwt.js';
@@ -34,6 +35,7 @@ export const signup = async (req, res, _next) => {
 
     res.status(201).json({
       message: 'User Registered',
+      token,
       user: {
         id: user.id,
         name: user.name,
@@ -78,6 +80,7 @@ export const signin = async (req, res, _next) => {
 
     res.status(200).json({
       message: 'User signed in successfully',
+      token,
       user: {
         id: user.id,
         name: user.name,
@@ -109,6 +112,27 @@ export const signout = async (req, res, _next) => {
     });
   } catch (e) {
     logger.error(`signout error ${e}`);
+    _next(e);
+  }
+};
+
+export const getMe = async (req, res, _next) => {
+  try {
+    const user = await getUserById(req.user.id);
+    res.status(200).json({
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        created_at: user.created_at,
+      },
+    });
+  } catch (e) {
+    logger.error(`getMe error ${e}`);
+    if (e.message === 'User not found') {
+      return res.status(404).json({ error: 'User not found' });
+    }
     _next(e);
   }
 };

@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from '#routes/auth.routes.js';
+import { optionalAuthenticate } from '#middleware/auth.middleware.js';
 import securityMiddleware from '#middleware/security.middleware.js';
 import usersRoutes from '#routes/user.routes.js';
 
@@ -22,6 +23,7 @@ app.use(
   })
 );
 
+app.use(optionalAuthenticate);
 app.use(securityMiddleware);
 
 app.get('/', (req, res) => {

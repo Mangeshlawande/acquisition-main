@@ -6,7 +6,7 @@ import {
   fetchAllUsers,
   fetchUserById,
   updateUserById,
-} from '#src/controllers/users.controllers.js';
+} from '#controllers/users.controllers.js';
 
 const router = express.Router();
 
