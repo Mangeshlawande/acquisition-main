@@ -64,6 +64,7 @@ COPY --chown=nodejs:nodejs . .
 
 # Remove unnecessary files for production
 RUN rm -rf tests/ *.md .git* .env* docker-compose* Dockerfile* .eslintrc* .prettierrc*
+RUN mkdir -p logs && chown -R nodejs:nodejs /app/logs
 
 # Switch to non-root user
 USER nodejs
@@ -75,4 +76,4 @@ EXPOSE 3000
 ENTRYPOINT ["dumb-init", "--"]
 
 # Start the production server
-CMD ["node", "start"]
+CMD ["npm", "start"]
