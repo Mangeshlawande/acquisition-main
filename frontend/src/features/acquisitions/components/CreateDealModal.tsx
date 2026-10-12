@@ -73,7 +73,7 @@ export const CreateDealModal: React.FC<CreateDealModalProps> = ({
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
               Industry Sector
             </label>
             <select
@@ -81,7 +81,7 @@ export const CreateDealModal: React.FC<CreateDealModalProps> = ({
               onChange={e =>
                 setFormData({ ...formData, industry: e.target.value })
               }
-              className="w-full px-3.5 py-2 text-sm bg-white border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full px-3.5 py-2 text-sm bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500"
             >
               <option value="Enterprise SaaS">Enterprise SaaS</option>
               <option value="FinTech">FinTech</option>
@@ -123,7 +123,7 @@ export const CreateDealModal: React.FC<CreateDealModalProps> = ({
           />
         </div>
 
-        <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+        <div className="flex items-center justify-end gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
           <Button type="button" variant="outline" onClick={onClose}>
             Cancel
           </Button>
