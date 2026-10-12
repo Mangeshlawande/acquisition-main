@@ -19,7 +19,7 @@ const aj = arcjet({
       ],
     }),
     slidingWindow({
-      mode: 'LIVE',
+      mode: process.env.NODE_ENV === 'production' ? 'LIVE' : 'DRY_RUN',
       interval: '2s',
       max: 5,
     }),
